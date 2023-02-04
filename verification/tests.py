@@ -10,19 +10,19 @@ Each test is dict with
 TESTS = {
     "Basics": [
         {
-            "input": {"key": "value"},
+            "input": [{"key": "value"}],
             "answer": {"key": "value"},
         },
         {
-            "input": {"key": {"deeper": {"more": {"enough": "value"}}}},
+            "input": [{"key": {"deeper": {"more": {"enough": "value"}}}}],
             "answer": {"key/deeper/more/enough": "value"},
         },
         {
-            "input": {"empty": {}},
+            "input": [{"empty": {}}],
             "answer": {"empty": ""},
         },
         {
-            "input": {"name": {
+            "input": [{"name": {
                 "first": "One",
                 "last": "Drone"},
                       "job": "scout",
@@ -30,7 +30,7 @@ TESTS = {
                       "additional": {
                           "place": {
                               "zone": "1",
-                              "cell": "2"}}},
+                              "cell": "2"}}}],
             "answer": {"name/first": "One",
                        "name/last": "Drone",
                        "job": "scout",
@@ -38,11 +38,10 @@ TESTS = {
                        "additional/place/zone": "1",
                        "additional/place/cell": "2"},
         },
-
     ],
     "Extra": [
         {
-            "input": {"name": {
+            "input": [{"name": {
                 "first": "Second",
                 "last": "Drone",
                 "nick": {}
@@ -71,26 +70,26 @@ TESTS = {
                                   "2064": "Nope",
                               }
                           }
-                      }},
+                      }}],
             "answer": {"job/1": "scout", "recent/places/earth/NY": "2017", "job/3": "writer", "job/2": "worker",
                        "job/5": "learner", "job/4": "reader", "recent/places/earth/NP": "",
                        "recent/places/earth/Louvre": "2015", "recent/times/XX/1964": "Yes",
                        "recent/times/XXI/2064": "Nope", "name/first": "Second", "name/last": "Drone", "name/nick": ""},
         },
         {
-            "input": {"Hm": {"What": {"is": {"here": {"?": {}}}}}},
+            "input": [{"Hm": {"What": {"is": {"here": {"?": {}}}}}}],
             "answer": {"Hm/What/is/here/?": ""},
         },
         {
-            "input": {"flat": "yep",
+            "input": [{"flat": "yep",
                       "root": "yep",
-                      "who": "iam"},
+                      "who": "iam"}],
             "answer": {"flat": "yep",
                        "root": "yep",
                        "who": "iam"},
         },
         {
-            "input": {"1": "X",
+            "input": [{"1": "X",
                       "3": {"31": {
                           "312": "V"
                       },
@@ -100,11 +99,11 @@ TESTS = {
                                         "34580": "X"
                                     }
                                 }
-                            }}},
+                            }}}],
             "answer": {"1": "X", "3/31/312": "V", "3/34/345/3458/34580": "X"},
         },
         {
-            "input": {
+            "input": [{
                 "glossary": {
                     "title": "example glossary",
                     "GlossDiv": {
@@ -126,7 +125,7 @@ TESTS = {
                     }
                 },
                 "source": "http://json.org/example"
-            },
+            }],
             "answer": {
             "glossary/GlossDiv/GlossList/GlossEntry/GlossDef/para": "A meta-markup language, used to create markup languages such as DocBook.",
             "glossary/title": "example glossary", "glossary/GlossDiv/GlossList/GlossEntry/Abbrev": "ISO 8879:1986",
@@ -139,7 +138,5 @@ TESTS = {
             "glossary/GlossDiv/GlossList/GlossEntry/GlossDef/GlossSeeAlso/1": "GML",
             "glossary/GlossDiv/GlossList/GlossEntry/GlossSee": "markup"},
         },
-
-
     ]
 }

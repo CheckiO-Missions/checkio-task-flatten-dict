@@ -6,7 +6,7 @@
     Depuis, il a classifié tous les réactifs de son laboratoire,
     les livres de la bibliothèque et les notes sur son bureau. 
     Mais il a depuis appris à utiliser les 
-    <a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">dictionaires</a> (dict) de Python,
+    <a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">dictionaires</a> (dict) de Python,
     et il a catégorisé toutes les configurations possibles pour les drones de Sophia.
     À présent, les fichiers sont organisés dans de profondes structures arborescentes,
    ce qui déplaît à Sophia.
@@ -23,8 +23,8 @@
   Le résutat doit être un dictionnaire "plat", sans  sous-dictionnaires (les valeurs doivent toutes être des chaînes 
   de caractères).
   Les clés doivent contenir les chemins d'accès constitués des clés parentes du dictionnaire d'origine.
-  Dans ces chemins d'accès, les clés sont séparées par des "/". Si une valeur est un dictionnaire vide, il sera remplacé 
-  par la chaîne de caractères vide (""). Observons un exemple :
+  Dans ces chemins d'accès, les clés sont séparées par des <b>"/"</b>. Si une valeur est un dictionnaire vide, il sera remplacé 
+  par la chaîne de caractères vide (<b>""</b>). Observons un exemple:
 </p>
 <pre class="brush: python">
 {
@@ -42,50 +42,60 @@
 }
 </pre>
 <p>
-    Le résultat sera :
+    Le résultat sera:
 </p>
+{% if is_js %}
+<pre class="brush: javascript">
+{"name/first": "One",          // one parent
+"name/last": "Drone",
+"job": "scout",                // root key
+"recent": "",                  // empty dict
+"additional/place/zone": "1",  // third level
+"additional/place/cell": "2"}
+</pre>
+{% else %}
 <pre class="brush: python">
-{"name/first": "One",           #one parent
+{"name/first": "One",           # one parent
  "name/last": "Drone",
- "job": "scout",                #root key
- "recent": "",                  #empty dict
- "additional/place/zone": "1",  #third level
+ "job": "scout",                # root key
+ "recent": "",                  # empty dict
+ "additional/place/zone": "1",  # third level
  "additional/place/cell": "2"}
 </pre>
+{% endif %}
 
 <p>
-    <strong>Input: </strong> Un dictionnaire d'origine (dict).
+    <strong>Input:</strong> Un dictionnaire d'origine ({% if is_js %}Object{% else %}dict{% endif %}).
 </p>
 
 <p>
-    <strong>Output: </strong> Le dictionnaire linéarisé ("plat") (dict).
+    <strong>Output:</strong> Le dictionnaire linéarisé ("plat") ({% if is_js %}Object{% else %}dict{% endif %}).
 </p>
 
 
 
 <div class="for_info_only">
     <p>
-        <strong>Exemple:</strong>
+        <strong>Exemples:</strong>
     </p>
-    <pre class="brush: python">
-flatten({"key": "value"}) == {"key": "value"}
-flatten({"key": {"deeper": {"more": {"enough": "value"}}}}) == {"key/deeper/more/enough": "value"}
-flatten({"empty": {}}) == {"empty": ""}
-    </pre>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 <p class="for_info_only">
-    <strong>Utilisation: </strong>
-    Ce concept peut être utile si vous avez besoin de "parser" des fichiers ou de simplifier des structures
+    <strong>Utilisation:</strong>
+    <i>
+        Ce concept peut être utile si vous avez besoin de "parser" des fichiers ou de simplifier des structures
     pour des systèmes ou structures de fichiers qui datent.
     Vous pouvez adapter cette idée à votre propre situation.
    De plus, c'est très utile d'être capable de comprendre le code de quelqu'un d'autre, et d'en trouver les erreurs.
-   
+    </i>
 </p>
 
 <p>
-    <strong>Précondition:</strong><br>
-    <strong>Keys</strong> in a dictionary are non-empty strings.<br>
-    <strong>Values</strong> in a dictionary are strings or dicts.<br>
-    root_dictionary != {}<br>
+    <strong>Préconditions:</strong>
+    <ul>
+        <li><i><strong>keys</strong> in a dictionary are non-empty strings;</i></li>
+        <li><i><strong>values</strong> in a dictionary are strings or dicts;</i></li>
+        <li><i>root_dictionary != {}.</i></li>
+    </ul>
 </p>
