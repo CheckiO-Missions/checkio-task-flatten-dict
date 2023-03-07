@@ -5,13 +5,13 @@
     机器人把在船上的每个面的标签撕了几个星期。
     从那时起，他归类在他的实验室的所有试剂，
     图书馆的书和在桌子上笔记。
-    但后来他得知 python <a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">字典</a>，并分类所有索菲亚的机器人的可能的配置。
+    但后来他得知 python <a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">字典</a>，并分类所有索菲亚的机器人的可能的配置。
     现在，这些文件被组织在一个很深的嵌套结构，
     但索菲亚并不喜欢这样。让我们帮助索菲亚扁平化这些字典。
 </p>
 
 <p>
-    Python字典是一种可以用来方便地存储和处理配置的数据类型。它允许你通过键来创建嵌套结构来存储数据。您将得到一个字典，其中的键是字符串，值是字符串或字典。我们的目标是使字典扁平化，但保存的结构中的键。其结果应该是一个字典没有嵌套的字典。键应包含原来的字典中的父键的路径。在路径中的键是由以“/”分开。如果值是一个空的字典，那么它应该由一个空字符串（""）所取代。让我们来看一个例子：
+    Python字典是一种可以用来方便地存储和处理配置的数据类型。它允许你通过键来创建嵌套结构来存储数据。您将得到一个字典，其中的键是字符串，值是字符串或字典。我们的目标是使字典扁平化，但保存的结构中的键。其结果应该是一个字典没有嵌套的字典。键应包含原来的字典中的父键的路径。在路径中的键是由以<b>“/”</b>分开。如果值是一个空的字典，那么它应该由一个空字符串（<b>""</b>）所取代。让我们来看一个例子：
 </p>
 <pre class="brush: python">
 {
@@ -31,21 +31,32 @@
 <p>
     其结果将是:
 </p>
+{% if is_js %}
+<pre class="brush: javascript">
+{"name/first": "One",          // one parent
+"name/last": "Drone",
+"job": "scout",                // root key
+"recent": "",                  // empty dict
+"additional/place/zone": "1",  // third level
+"additional/place/cell": "2"}
+</pre>
+{% else %}
 <pre class="brush: python">
-{"name/first": "One",           #one parent
+{"name/first": "One",           # one parent
  "name/last": "Drone",
- "job": "scout",                #root key
- "recent": "",                  #empty dict
- "additional/place/zone": "1",  #third level
+ "job": "scout",                # root key
+ "recent": "",                  # empty dict
+ "additional/place/zone": "1",  # third level
  "additional/place/cell": "2"}
 </pre>
+{% endif %}
 
 <p>
-    <strong>输入: </strong> 作为字典的一个原始字典。
+    <strong>输入:</strong> 作为字典的一个原始字典。
 </p>
 
 <p>
-    <strong>输出: </strong> 作为字典的一个扁平化字典。
+    <strong>输出:</strong> 作为字典的一个扁平化字典。
 </p>
 
 
@@ -53,23 +64,23 @@
     <p>
         <strong>范例:</strong>
     </p>
-    <pre class="brush: python">
-flatten({"key": "value"}) == {"key": "value"}
-flatten({"key": {"deeper": {"more": {"enough": "value"}}}}) == {"key/deeper/more/enough": "value"}
-flatten({"empty": {}}) == {"empty": ""}
-    </pre>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 <p class="for_info_only">
-    <strong>如何使用：</strong>
-    这个概念在你需要为保持系统和文件结构原状而分析配置文件，简化结构时会有用。
+    <strong>如何使用</strong>
+    <i>
+       这个概念在你需要为保持系统和文件结构原状而分析配置文件，简化结构时会有用。
     您可以用自己的规格轻松地修改这个想法。 
-    除此之外，它是一个能让你读懂代码和查找漏洞的有用的技能，。
+    除此之外，它是一个能让你读懂代码和查找漏洞的有用的技能，。 
+    </i>
 </p>
 
 <p>
     <strong>前提:</strong><br>
-    字典中的<strong>Keys</strong>是非空的字符串<br>
-    字典中的<strong>Values</strong>是字典或者字符串<br>
-    root_dictionary != {}<br>
+    <ul>
+        <li><i>字典中的<strong>Keys</strong>是非空的字符串;</i></li>
+        <li><i>字典中的<strong>Values</strong>是字典或者字符串;</i></li>
+        <li><i>root_dictionary != {}.</i></li>
+    </ul>
 </p>

@@ -1,7 +1,7 @@
 <img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
 <p>
    ニコラは見えるものすべてを分類するのが好きだ。ある時ステファンが彼の誕生日にラベルメーカーをあげ、ロボット達は何週間もの間、船のすべての表面からラベルをはがした。
-   彼はそれ以来研究室のすべての試薬や図書館の本、机のメモを分類していたが、彼はPythonの<a href="http://docs.python.jp/3/library/stdtypes.html#mapping-types-dict">辞書(dictionary)</a>について学習し、ソフィアの無人機についてのすべての可能な設定を分類した。
+   彼はそれ以来研究室のすべての試薬や図書館の本、机のメモを分類していたが、彼はPythonの<a target="_blank" href="http://docs.python.jp/3/library/stdtypes.html#mapping-types-dict">辞書(dictionary)</a>について学習し、ソフィアの無人機についてのすべての可能な設定を分類した。
    そのファイルは深いネスト構造になっているが、ソフィアはこれが好きではない。これらの辞書をフラットにしてソフィアを助けよう。
 
     <!-- Nikola likes to categorize everything in sight.
@@ -22,7 +22,7 @@
   ゴールは辞書をフラットにすることだが、キーの構造は保存する。
   結果はネストされた辞書ではない必要がある。
   キーは元の辞書の親のキーを含むパスである必要がある。
-  キーのパスは"/"で区切られる。もし値が空の辞書であれば、空文字("")に置き換えられるべきだ。例を見てみよう。
+  キーのパスは<b>"/"</b>で区切られる。もし値が空の辞書であれば、空文字(<b>""</b>)に置き換えられるべきだ。例を見てみよう。
 
     <!-- Python dictionaries are a convenient data type to store and process configurations.
     They allow you to store data by keys to create nested structures.
@@ -53,25 +53,36 @@
 
     <!-- The result will be: -->
 </p>
+{% if is_js %}
+<pre class="brush: javascript">
+{"name/first": "One",          // 1つの親
+"name/last": "Drone",
+"job": "scout",                // ルートキー
+"recent": "",                  // 空の辞書
+"additional/place/zone": "1",  // 3レベル
+"additional/place/cell": "2"}
+</pre>
+{% else %}
 <pre class="brush: python">
-{"name/first": "One",           #1つの親
+{"name/first": "One",           # 1つの親
  "name/last": "Drone",
- "job": "scout",                #ルートキー
- "recent": "",                  #空の辞書
- "additional/place/zone": "1",  #3レベル
+ "job": "scout",                # ルートキー
+ "recent": "",                  # 空の辞書
+ "additional/place/zone": "1",  # 3レベル
  "additional/place/cell": "2"}
 </pre>
+{% endif %}
 
 <p>
-    <strong>入力 </strong> 元々の辞書(dict型)
+    <strong>入力</strong> 元々の辞書({% if is_js %}Object{% else %}dict{% endif %}型)
 
-    <!-- <strong>Input: </strong> An original dictionary as a dict. -->
+    <!-- <strong>Input:</strong> An original dictionary as a dict. -->
 </p>
 
 <p>
-    <strong>出力 </strong> フラットにした辞書(dict型)
+    <strong>出力</strong> フラットにした辞書({% if is_js %}Object{% else %}dict{% endif %}型)
 
-    <!-- <strong>Output: </strong> The flattened dictionary as a dict. -->
+    <!-- <strong>Output:</strong> The flattened dictionary as a dict. -->
 </p>
 
 
@@ -80,20 +91,18 @@
     <p>
         <strong>例</strong>
     </p>
-    <pre class="brush: python">
-flatten({"key": "value"}) == {"key": "value"}
-flatten({"key": {"deeper": {"more": {"enough": "value"}}}}) == {"key/deeper/more/enough": "value"}
-flatten({"empty": {}}) == {"empty": ""}
-    </pre>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 <p class="for_info_only">
-  <strong>どうやって使われるか </strong>
-  この考え方は設定ファイルをパースし、とても古いシステムやファイル構造を単純化するのに役立つ。
+  <strong>どうやって使われるか</strong>
+  <i>
+    この考え方は設定ファイルをパースし、とても古いシステムやファイル構造を単純化するのに役立つ。
   あなたは簡単に自分独自の仕様向けにこのアイデアを適用することができるだろう。
   その他に、コードを読みバグを探すことができるようになるのは有用なスキルである。
+  </i>
 
-    <!-- <strong>How it is used: </strong>
+    <!-- <strong>How it is used:</strong>
     This concept can be useful if you need to parse config files and simplify structures
     for grandfathered systems and file structures.
     You can easily modify this idea for your own specifications.
@@ -101,10 +110,12 @@ flatten({"empty": {}}) == {"empty": ""}
 </p>
 
 <p>
-    <strong>事前条件</strong><br>
-    <strong>キー</strong> は空文字ではない。<br>
-    <strong>値</strong>は文字列または辞書型である。<br>
-    root_dictionary != {}<br>
+    <strong>事前条件</strong>
+    <ul>
+        <li><i><strong>キー</strong> は空文字ではない。;</i></li>
+        <li><i><strong>値</strong>は文字列または辞書型である。;</i></li>
+        <li><i>root_dictionary != {}.</i></li>
+    </ul>
 
     <!-- <strong>Precondition:</strong><br>
     <strong>Keys</strong> in a dictionary are non-empty strings.<br>
