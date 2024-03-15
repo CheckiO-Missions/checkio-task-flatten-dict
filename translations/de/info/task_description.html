@@ -1,0 +1,94 @@
+<img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
+<p>
+    Nikola kategorisiert gerne alles, was er sieht.
+    Einmal schenkte Stephan ihm zum Geburtstag einen Etikettenmacher,
+    und die Roboter schälten wochenlang Etiketten von jeder Oberfläche des Schiffes.
+    Seitdem hat er alle Reagenzien in seinem Labor kategorisiert,
+    die Bücher in der Bibliothek und die Notizen auf dem Schreibtisch.
+    Aber dann erfuhr er von {% if is_js %}Typescript <a target="_blank" href="https://www.typescriptlang.org/docs/handbook/2/objects.html">objects</a>{% else %} Python <a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict">dictionaries</a>{% endif %} ,
+    und kategorisierte alle möglichen Konfigurationen für Sophias Drohnen.
+    Jetzt sind die Dateien in einer tief verschachtelten Struktur organisiert,
+    aber Sophia gefällt das nicht. Helfen wir Sophia, diese {% if is_js %}Objekte{% else %}Wörterbücher{% endif %} flach zu legen.
+</p>
+
+<p>
+   {% if is_js %}Typescript-Objekte{% else %}Python-Dictionaries{% endif %} sind ein praktischer Datentyp zum Speichern und Verarbeiten von Konfigurationen.
+    Sie ermöglichen es Ihnen, Daten nach Schlüsseln zu speichern und verschachtelte Strukturen zu erstellen.
+    Sie erhalten ein {% if is_js %}Objekt{% else %}Wörterbuch{% endif %}, bei dem die Schlüssel Strings und die Werte Strings oder {% if is_js %}Objekte{% else %}Wörterbücher{% endif %} sind.
+    Das Ziel ist es, das Objekt {% if is_js %}{% else %} dictionary{% endif %} flach zu machen, aber die Strukturen in den Schlüsseln zu speichern.
+    Das Ergebnis sollte ein {% if is_js %}Objekt{% else %}dictionary{% endif %} ohne die verschachtelten {% if is_js %}Objekte{% else %}dictionaries{% endif %} sein.
+    Die Schlüssel sollten Pfade enthalten, die die übergeordneten Schlüssel aus dem ursprünglichen {% if is_js %}Objekt{% else %}dictionary{% endif %} enthalten.
+    Die Schlüssel im Pfad werden durch ein <b>"/"</b> getrennt. Wenn ein Wert ein leeres {% if is_js %}Objekt{% else %}dictionary{% endif %} ist,
+    dann sollte er durch eine leere Zeichenkette (<b>""</b>) ersetzt werden. Schauen wir uns ein Beispiel an:
+</p>
+<pre class="brush: python">
+{
+    "name": {
+        "first": "One",
+        "last": "Drone"
+    },
+    "job": "scout",
+    "recent": {},
+    "additional": {
+        "place": {
+            "zone": "1",
+            "cell": "2"}
+    }
+}
+</pre>
+<p>
+    Das Ergebnis wird sein:
+</p>
+{% if is_js %}
+<pre class="brush: javascript">
+{"name/first": "One",          // one parent
+"name/last": "Drone",
+"job": "scout",                // root key
+"recent": "",                  // empty dict
+"additional/place/zone": "1",  // third level
+"additional/place/cell": "2"}
+</pre>
+{% else %}
+<pre class="brush: python">
+{"name/first": "One",           # one parent
+ "name/last": "Drone",
+ "job": "scout",                # root key
+ "recent": "",                  # empty dict
+ "additional/place/zone": "1",  # third level
+ "additional/place/cell": "2"}
+</pre>
+{% endif %}
+
+<p>
+   <strong>Eingabe:</strong> Ein Original {% if is_js %}Objekt{% else %}Wörterbuch{% endif %} als {% if is_js %}Objekt{% else %}Diktat{% endif %}.
+</p>
+
+<p>
+   <strong>Ausgabe:</strong> Das reduzierte {% if is_js %}Objekt{% else %}dictionary{% endif %} als {% if is_js %}Objekt{% else %}dict{% endif %}.
+</p>
+
+<div class="for_info_only">
+    <p>
+        <strong>Beispiele:</strong>
+    </p>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>Wie es verwendet wird:</strong>
+    <i>
+        Dieses Konzept kann nützlich sein, wenn Sie Konfigurationsdateien parsen und Strukturen vereinfachen müssen
+    für alteingesessene Systeme und Dateistrukturen.
+    Sie können diese Idee leicht für Ihre eigenen Spezifikationen abwandeln.
+    Außerdem ist es eine nützliche Fähigkeit, Code lesen und nach Fehlern suchen zu können.
+    </i>
+</p>
+
+<p>
+    <strong>Vorbedingungen:</strong>
+    <ul>
+        <li><i><strong>schlüssel</strong> in einem Wörterbuch sind nicht leere Zeichenketten;</i></li>
+        <li><i><strong>werte</strong> in einem Wörterbuch sind Strings oder Dicts;</i></li>
+        <li><i>root_dictionary!= {}.</i></li>
+    </ul>
+</p>
