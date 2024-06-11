@@ -1,5 +1,5 @@
 <img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
-<p>
+<p  style="text-align: justify;">
     Nikola adore tout classer par catégorie.
     Stephan lui avait offert une étiqueteuse pour son anniversaire,
     et les robots se sont amusés pendant des semaines à décoller les étiquettes partout dans le vaisseau.
@@ -13,7 +13,7 @@
    Aidons Sophia à linéariser ces dictionnaires.
 </p>
 
-<p>
+<p  style="text-align: justify;">
   Le type de donnée "dictionnaire" de Python est très pratique pour enregistrer et programmer des configurations complexes. 
   Il permet de stocker des données par clés pour créer des structures arborescentes. 
   Il vous est donné un dictionnaire (dict) dont les clés sont des chaînes de caractères (string), et les valeurs des 
@@ -26,7 +26,14 @@
   Dans ces chemins d'accès, les clés sont séparées par des <b>"/"</b>. Si une valeur est un dictionnaire vide, il sera remplacé 
   par la chaîne de caractères vide (<b>""</b>). Observons un exemple:
 </p>
-<pre class="brush: python">
+<table>
+    <tr>
+        <td align="center">Example:</td>
+        <td align="center">Result:</td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="brush: python">
 {
     "name": {
         "first": "One",
@@ -40,29 +47,45 @@
             "cell": "2"}
     }
 }
-</pre>
-<p>
-    Le résultat sera:
-</p>
-{% if is_js %}
-<pre class="brush: javascript">
-{"name/first": "One",          // one parent
+            </pre>
+        </td>
+        <td>
+            {% if is_js %}
+            <pre class="brush: javascript">
+{
+    
+"name/first": "One",          // one parent
 "name/last": "Drone",
+
 "job": "scout",                // root key
 "recent": "",                  // empty dict
+
+
 "additional/place/zone": "1",  // third level
-"additional/place/cell": "2"}
+"additional/place/cell": "2"
+}
+
 </pre>
 {% else %}
 <pre class="brush: python">
-{"name/first": "One",           # one parent
- "name/last": "Drone",
- "job": "scout",                # root key
- "recent": "",                  # empty dict
- "additional/place/zone": "1",  # third level
- "additional/place/cell": "2"}
-</pre>
-{% endif %}
+{
+
+"name/first": "One",           # one parent
+"name/last": "Drone",
+
+"job": "scout",                # root key
+"recent": "",                  # empty dict
+
+
+"additional/place/zone": "1",  # third level
+"additional/place/cell": "2"
+}
+
+            </pre>
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p>
     <strong>Input:</strong> Un dictionnaire d'origine ({% if is_js %}Object{% else %}dict{% endif %}).

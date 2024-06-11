@@ -1,5 +1,5 @@
 ﻿<img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
-<p>
+<p  style="text-align: justify;">
     尼古拉喜欢对一切看到的东西进行分类。
     有一次，斯蒂芬送了他一个标签机作为他的生日礼物，
     机器人把在船上的每个面的标签撕了几个星期。
@@ -10,10 +10,17 @@
     但索菲亚并不喜欢这样。让我们帮助索菲亚扁平化这些字典。
 </p>
 
-<p>
+<p  style="text-align: justify;">
     Python字典是一种可以用来方便地存储和处理配置的数据类型。它允许你通过键来创建嵌套结构来存储数据。您将得到一个字典，其中的键是字符串，值是字符串或字典。我们的目标是使字典扁平化，但保存的结构中的键。其结果应该是一个字典没有嵌套的字典。键应包含原来的字典中的父键的路径。在路径中的键是由以<b>“/”</b>分开。如果值是一个空的字典，那么它应该由一个空字符串（<b>""</b>）所取代。让我们来看一个例子：
 </p>
-<pre class="brush: python">
+<table>
+    <tr>
+        <td align="center">Example:</td>
+        <td align="center">Result:</td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="brush: python">
 {
     "name": {
         "first": "One",
@@ -27,29 +34,45 @@
             "cell": "2"}
     }
 }
-</pre>
-<p>
-    其结果将是:
-</p>
-{% if is_js %}
-<pre class="brush: javascript">
-{"name/first": "One",          // one parent
+            </pre>
+        </td>
+        <td>
+            {% if is_js %}
+            <pre class="brush: javascript">
+{
+    
+"name/first": "One",          // one parent
 "name/last": "Drone",
+
 "job": "scout",                // root key
 "recent": "",                  // empty dict
+
+
 "additional/place/zone": "1",  // third level
-"additional/place/cell": "2"}
+"additional/place/cell": "2"
+}
+
 </pre>
 {% else %}
 <pre class="brush: python">
-{"name/first": "One",           # one parent
- "name/last": "Drone",
- "job": "scout",                # root key
- "recent": "",                  # empty dict
- "additional/place/zone": "1",  # third level
- "additional/place/cell": "2"}
-</pre>
-{% endif %}
+{
+
+"name/first": "One",           # one parent
+"name/last": "Drone",
+
+"job": "scout",                # root key
+"recent": "",                  # empty dict
+
+
+"additional/place/zone": "1",  # third level
+"additional/place/cell": "2"
+}
+
+            </pre>
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p>
     <strong>输入:</strong> 作为字典的一个原始字典。

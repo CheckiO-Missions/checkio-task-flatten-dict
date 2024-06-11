@@ -1,5 +1,5 @@
 <img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
-<p>
+<p  style="text-align: justify;">
     Ніколі дуже подобається класифікувати усе, що потрапило йому на очі.
     Якось на його день народження Стефан подарував йому пристрій для маркування, та згодом
     роботи витратили багато часу відшкрябуючи наклейки з усіх поверхонь на кораблі.
@@ -11,7 +11,7 @@
 	але дронам Софії це не до вподоби. Давайте спробуємо допомогти Софії зробити ці {% if is_js %}об'єкти{% else %}словники{% endif %} більш простими.
 </p>
 
-<p>
+<p  style="text-align: justify;">
     {% if is_js %}Об'єкти{% else %}Словники{% endif %} - це дуже зручні типи даних для зберігання, та обробки будь яких конфігурацій.
     Вони дозволяють зберігати дані за допомогою ключів для створення структури з багатьма вкладеннями.
     Маємо {% if is_js %}об'єкт{% else %}словник{% endif %}, в якому ключами є рядки, а значення по ключах являє собою рядки або {% if is_js %}об'єкти{% else %}словники{% endif %}.
@@ -22,7 +22,14 @@
 	Якщо значення за ключем є порожній {% if is_js %}об'єкт{% else %}словник{% endif %}, то таке значення повинне бути замінене на рядок у вигляді (<b>""</b>).
     Давайте поглянемо на приклад: 
 </p>
-<pre class="brush: python">
+<table>
+    <tr>
+        <td align="center">Example:</td>
+        <td align="center">Result:</td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="brush: python">
 {
     "name": {
         "first": "One",
@@ -36,29 +43,45 @@
             "cell": "2"}
     }
 }
-</pre>
-<p>
-    Результат повинен бути:
-</p>
-{% if is_js %}
-<pre class="brush: javascript">
-{"name/first": "One",          // one parent
+            </pre>
+        </td>
+        <td>
+            {% if is_js %}
+            <pre class="brush: javascript">
+{
+    
+"name/first": "One",          // one parent
 "name/last": "Drone",
+
 "job": "scout",                // root key
 "recent": "",                  // empty dict
+
+
 "additional/place/zone": "1",  // third level
-"additional/place/cell": "2"}
+"additional/place/cell": "2"
+}
+
 </pre>
 {% else %}
 <pre class="brush: python">
-{"name/first": "One",           # one parent
- "name/last": "Drone",
- "job": "scout",                # root key
- "recent": "",                  # empty dict
- "additional/place/zone": "1",  # third level
- "additional/place/cell": "2"}
-</pre>
-{% endif %}
+{
+
+"name/first": "One",           # one parent
+"name/last": "Drone",
+
+"job": "scout",                # root key
+"recent": "",                  # empty dict
+
+
+"additional/place/zone": "1",  # third level
+"additional/place/cell": "2"
+}
+
+            </pre>
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p>
     <strong>Вхідні дані:</strong> Оригінальний словник із вкладеними словниками як тип {% if is_js %}Object{% else %}dict{% endif %}.
