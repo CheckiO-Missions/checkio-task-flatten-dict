@@ -1,5 +1,5 @@
 <img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
-<p>
+<p  style="text-align: justify;">
     Nikola likes to categorize everything in sight.
     One time Stephan gave him a label maker for his birthday,
     and the robots were peeling labels off of every surface in the ship for weeks.
@@ -11,7 +11,7 @@
     but Sophia doesn’t like this. Let's help Sophia to flatten these {% if is_js %}objects{% else %}dictionaries{% endif %}.
 </p>
 
-<p>
+<p  style="text-align: justify;">
     {% if is_js %}Typescript objects{% else %}Python dictionaries{% endif %} are a convenient data type to store and process configurations.
     They allow you to store data by keys to create nested structures.
     You are given a {% if is_js %}object{% else %}dictionary{% endif %} where the keys are strings and the values are strings or {% if is_js %}objects{% else %}dictionaries{% endif %}.
@@ -19,9 +19,16 @@
     The result should be the a {% if is_js %}object{% else %}dictionary{% endif %} without the nested {% if is_js %}objects{% else %}dictionaries{% endif %}.
     The keys should contain paths that contain the parent keys from the original {% if is_js %}object{% else %}dictionary{% endif %}.
     The keys in the path are separated by a <b>"/"</b>. If a value is an empty {% if is_js %}object{% else %}dictionary{% endif %},
-    then it should be replaced by an empty string (<b>""</b>). Let's look at an example:
+    then it should be replaced by an empty string (<b>""</b>).
 </p>
-<pre class="brush: python">
+<table>
+    <tr>
+        <td align="center">Example:</td>
+        <td align="center">Result:</td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="brush: python">
 {
     "name": {
         "first": "One",
@@ -35,29 +42,45 @@
             "cell": "2"}
     }
 }
-</pre>
-<p>
-    The result will be:
-</p>
-{% if is_js %}
-<pre class="brush: javascript">
-{"name/first": "One",          // one parent
+            </pre>
+        </td>
+        <td>
+            {% if is_js %}
+            <pre class="brush: javascript">
+{
+    
+"name/first": "One",          // one parent
 "name/last": "Drone",
+
 "job": "scout",                // root key
 "recent": "",                  // empty dict
+
+
 "additional/place/zone": "1",  // third level
-"additional/place/cell": "2"}
+"additional/place/cell": "2"
+}
+
 </pre>
 {% else %}
 <pre class="brush: python">
-{"name/first": "One",           # one parent
- "name/last": "Drone",
- "job": "scout",                # root key
- "recent": "",                  # empty dict
- "additional/place/zone": "1",  # third level
- "additional/place/cell": "2"}
-</pre>
-{% endif %}
+{
+
+"name/first": "One",           # one parent
+"name/last": "Drone",
+
+"job": "scout",                # root key
+"recent": "",                  # empty dict
+
+
+"additional/place/zone": "1",  # third level
+"additional/place/cell": "2"
+}
+
+            </pre>
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p>
     <strong>Input:</strong> An original {% if is_js %}object{% else %}dictionary{% endif %} as a {% if is_js %}Object{% else %}dict{% endif %}.

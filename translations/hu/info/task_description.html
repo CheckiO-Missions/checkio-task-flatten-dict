@@ -1,5 +1,5 @@
 <img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
-<p>
+<p  style="text-align: justify;">
     Nikoletta imád mindent, amit csak maga körül lát, rendszerbe szedni. Egyszer kapott 
     Istvántól egy címkéző gépet a születésnapjára, minek utána hetekig kellett elfelé 
     távolítgatni a címkéket az űrhajó minden létező felületéről. Ő kategorizálta az összes 
@@ -11,7 +11,7 @@
     nincs Zsófia ínyére. Segítsetek Zsófiának e szótárak szótárait leegyszerűsíteni!
 </p>
 
-<p>
+<p  style="text-align: justify;">
     A szótár – egy hasznos adattípus különböző konfigurációk tárolására és feldolgozására. 
     Segítségével kulcsok szerint lehet az adatokat tárolni és egymásba ágyazott struktúrákba 
     szervezni. Adott egy szótár, amelyben a kulcsok karakterláncokból állnak, ám az értékek 
@@ -22,7 +22,14 @@
     érték egy üres szótár, akkor azt egy üres sorra (<b>""</b>) kell cserélni.<br>
     Vizsgáljunk meg az alábbi példát:
 </p>
-<pre class="brush: python">
+<table>
+    <tr>
+        <td align="center">Example:</td>
+        <td align="center">Result:</td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="brush: python">
 {
     "name": {
         "first": "One",
@@ -36,29 +43,45 @@
             "cell": "2"}
     }
 }
-</pre>
-<p>
-    Az eredmény a következő lesz:
-</p>
-{% if is_js %}
-<pre class="brush: javascript">
-{"name/first": "One",          // one parent
+            </pre>
+        </td>
+        <td>
+            {% if is_js %}
+            <pre class="brush: javascript">
+{
+    
+"name/first": "One",          // one parent
 "name/last": "Drone",
+
 "job": "scout",                // root key
 "recent": "",                  // empty dict
+
+
 "additional/place/zone": "1",  // third level
-"additional/place/cell": "2"}
+"additional/place/cell": "2"
+}
+
 </pre>
 {% else %}
 <pre class="brush: python">
-{"name/first": "One",           # one parent
- "name/last": "Drone",
- "job": "scout",                # root key
- "recent": "",                  # empty dict
- "additional/place/zone": "1",  # third level
- "additional/place/cell": "2"}
-</pre>
-{% endif %}
+{
+
+"name/first": "One",           # one parent
+"name/last": "Drone",
+
+"job": "scout",                # root key
+"recent": "",                  # empty dict
+
+
+"additional/place/zone": "1",  # third level
+"additional/place/cell": "2"
+}
+
+            </pre>
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p>
     <strong>Bemeneti adatok:</strong> az eredeti szótár ({% if is_js %}Object{% else %}dict{% endif %}).

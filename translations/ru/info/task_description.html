@@ -1,5 +1,5 @@
 <img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
-<p>
+<p  style="text-align: justify;">
     Никола обожает классифицировать все, что видит вокруг.
     Однажды Стефан подарил ему устройство для ярлыков на день рождение,
     и затем они неделями отдирали наклейки со всех поверхностей и вещей на корабле.
@@ -10,7 +10,7 @@
     Помогите ей упростить эти {% if is_js %}обьекты из обьектов{% else %}словари словарей{% endif %}.
 </p>
 
-<p>
+<p  style="text-align: justify;">
     {% if is_js %}Обьекты{% else %}Словари{% endif %} - это удобный тип данных для хранения и обработки различных конфигураций.
     Они позволяют хранить данные по ключам и создавать вложенные структуры.
     Дан словарь, в котором в качестве ключей используются строки, а в качестве значений строки или словари.
@@ -20,7 +20,14 @@
     Если значение ключа есть пустой {% if is_js %}обьект{% else %}словарь{% endif %}, тогда оно должно быть заменено пустой строкой (<b>""</b>).
     Взглянем на пример:
 </p>
-<pre class="brush: python">
+<table>
+    <tr>
+        <td align="center">Example:</td>
+        <td align="center">Result:</td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="brush: python">
 {
     "name": {
         "first": "One",
@@ -34,29 +41,45 @@
             "cell": "2"}
     }
 }
-</pre>
-<p>
-    Результатом будет:
-</p>
-{% if is_js %}
-<pre class="brush: javascript">
-{"name/first": "One",          // one parent
+            </pre>
+        </td>
+        <td>
+            {% if is_js %}
+            <pre class="brush: javascript">
+{
+    
+"name/first": "One",          // one parent
 "name/last": "Drone",
+
 "job": "scout",                // root key
 "recent": "",                  // empty dict
+
+
 "additional/place/zone": "1",  // third level
-"additional/place/cell": "2"}
+"additional/place/cell": "2"
+}
+
 </pre>
 {% else %}
 <pre class="brush: python">
-{"name/first": "One",           # one parent
- "name/last": "Drone",
- "job": "scout",                # root key
- "recent": "",                  # empty dict
- "additional/place/zone": "1",  # third level
- "additional/place/cell": "2"}
-</pre>
-{% endif %}
+{
+
+"name/first": "One",           # one parent
+"name/last": "Drone",
+
+"job": "scout",                # root key
+"recent": "",                  # empty dict
+
+
+"additional/place/zone": "1",  # third level
+"additional/place/cell": "2"
+}
+
+            </pre>
+            {% endif %}
+        </td>
+    </tr>
+</table>
 
 <p>
     <strong>Входные данные:</strong> Оригинальный словарь ({% if is_js %}Object{% else %}dict{% endif %}).

@@ -1,5 +1,5 @@
 <img class="for_info_only half" src="{{MEDIA}}title.png" style="float:left;max-height: 400px">
-<p>
+<p  style="text-align: justify;">
    ニコラは見えるものすべてを分類するのが好きだ。ある時ステファンが彼の誕生日にラベルメーカーをあげ、ロボット達は何週間もの間、船のすべての表面からラベルをはがした。
    彼はそれ以来研究室のすべての試薬や図書館の本、机のメモを分類していたが、彼はPythonの<a target="_blank" href="http://docs.python.jp/3/library/stdtypes.html#mapping-types-dict">辞書(dictionary)</a>について学習し、ソフィアの無人機についてのすべての可能な設定を分類した。
    そのファイルは深いネスト構造になっているが、ソフィアはこれが好きではない。これらの辞書をフラットにしてソフィアを助けよう。
@@ -15,7 +15,7 @@
     but Sophia doesn’t like this. Let's help Sophia to flatten these dictionaries. -->
 </p>
 
-<p>
+<p  style="text-align: justify;">
   Pythonの辞書は設定を格納し処理するのに便利なデータ型だ。
   それらはキーによってネストした構造を作り、データを格納することができる。
   あなたはキーが文字列で値が文字列または辞書の、辞書が与えられる。
@@ -33,7 +33,15 @@
     The keys in the path are separated by a "/". If a value is an empty dictionary,
     then it should be replaced by an empty string (""). Let's look at an example: -->
 </p>
-<pre class="brush: python">
+
+<table>
+    <tr>
+        <td align="center">Example:</td>
+        <td align="center">Result:</td>
+    </tr>
+    <tr>
+        <td>
+            <pre class="brush: python">
 {
     "name": {
         "first": "One",
@@ -47,32 +55,45 @@
             "cell": "2"}
     }
 }
-</pre>
-<p>
-    結果は以下のようになる。
-
-    <!-- The result will be: -->
-</p>
-{% if is_js %}
-<pre class="brush: javascript">
-{"name/first": "One",          // 1つの親
+            </pre>
+        </td>
+        <td>
+            {% if is_js %}
+            <pre class="brush: javascript">
+{
+    
+"name/first": "One",           // 1つの親
 "name/last": "Drone",
+
 "job": "scout",                // ルートキー
 "recent": "",                  // 空の辞書
+
+
 "additional/place/zone": "1",  // 3レベル
-"additional/place/cell": "2"}
+"additional/place/cell": "2"
+}
+
 </pre>
 {% else %}
 <pre class="brush: python">
-{"name/first": "One",           # 1つの親
- "name/last": "Drone",
- "job": "scout",                # ルートキー
- "recent": "",                  # 空の辞書
- "additional/place/zone": "1",  # 3レベル
- "additional/place/cell": "2"}
-</pre>
-{% endif %}
+{
 
+"name/first": "One",           # 1つの親
+"name/last": "Drone",
+
+"job": "scout",                # ルートキー
+"recent": "",                  # 空の辞書
+
+
+"additional/place/zone": "1",  # 3レベル
+"additional/place/cell": "2"
+}
+
+            </pre>
+            {% endif %}
+        </td>
+    </tr>
+</table>
 <p>
     <strong>入力</strong> 元々の辞書({% if is_js %}Object{% else %}dict{% endif %}型)
 
